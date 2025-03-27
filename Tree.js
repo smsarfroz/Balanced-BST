@@ -148,6 +148,23 @@ class Tree {
       throw new Error('Given value is not there in the tree');
     }
   }
+  levelOrder(callback) {
+    if (!callback) {
+      throw new Error('Please provide a callback function first');
+    }
+    let queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let curNode = queue.shift();
+      callback(curNode);
+      if (curNode.left != null) {
+        queue.push(curNode.left);
+      }
+      if (curNode.right != null) {
+        queue.push(curNode.right);
+      }
+    }
+  }
 }
 
 export { Tree };
