@@ -61,10 +61,8 @@ class Tree {
     prettyPrint(this.root);
   }
   deleteItem(value) {
-    let nodeTobeDeleted = new Node();
     let curNode = this.root;
     let parNode = new Node();
-    let nextNode = new Node();
     let ok = false;
     if (this.root.data == value) {
       ok = true;
@@ -135,7 +133,21 @@ class Tree {
       throw new Error('No such value exists in the tree.');
     }
   }
-
+  find(value) {
+    let curNode = this.root;
+    while (!(curNode == null || curNode.data == value)) {
+      if (value < curNode.data) {
+        curNode = curNode.left;
+      } else {
+        curNode = curNode.right;
+      }
+    }
+    if (curNode != null && curNode.data == value) {
+      return curNode;
+    } else {
+      throw new Error('Given value is not there in the tree');
+    }
+  }
 }
 
 export { Tree };
