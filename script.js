@@ -5,8 +5,31 @@ tree.insert(24);
 tree.deleteItem(324);
 console.log(tree.find(23));
 
-const callback = (node) => {
-    console.log(`${node.data} `);
+let levelorder = '';
+const levelOrdercallback = (node) => {
+    let queue = [];
+    queue.push(node);
+    while (queue.length) {
+      let curNode = queue.shift();
+      levelorder += `${curNode.data} `;
+      if (curNode.left != null) {
+        queue.push(curNode.left);
+      }
+      if (curNode.right != null) {
+        queue.push(curNode.right);
+      }
+    }
 };
+tree.levelOrder(levelOrdercallback);
+console.log(levelorder);
 
-tree.levelOrder(callback);
+let inorder = '';
+const inOrderCallback = (node) => {
+    if (node == null) return;
+
+    inOrderCallback(node.left);
+    inorder += `${node.data} `;
+    inOrderCallback(node.right);
+};
+tree.inOrder(inOrderCallback);
+console.log(inorder);

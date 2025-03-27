@@ -1,4 +1,5 @@
 import { Node } from "./Node.js";
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -150,20 +151,15 @@ class Tree {
   }
   levelOrder(callback) {
     if (!callback) {
-      throw new Error('Please provide a callback function first');
+      throw new Error('Please provide a callback function first.');
     }
-    let queue = [];
-    queue.push(this.root);
-    while (queue.length) {
-      let curNode = queue.shift();
-      callback(curNode);
-      if (curNode.left != null) {
-        queue.push(curNode.left);
-      }
-      if (curNode.right != null) {
-        queue.push(curNode.right);
-      }
+    callback(this.root);
+  }
+  inOrder(callback) {
+    if (!callback) {
+      throw new Error('Please provide a callback function first.');
     }
+    callback(this.root);
   }
 }
 
