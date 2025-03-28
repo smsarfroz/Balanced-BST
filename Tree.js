@@ -202,7 +202,18 @@ class Tree {
     return Height;
   }
   depth(node) {
-    
+    let value = node.data; 
+    let curdepth = 0; 
+    let curNode = this.root;
+    while (curNode != node) {
+      if (value < curNode.data) {
+        curNode = curNode.left;
+      } else {
+        curNode = curNode.right;
+      }
+      curdepth++;
+    }
+    return curdepth;
   }
 }
 
