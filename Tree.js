@@ -229,7 +229,14 @@ class Tree {
     }
   }
   rebalance() {
-    
+    let array = [];
+    this.inOrder(this.root, (node) => {
+      array.push(node.data);
+    });
+    console.log(array);
+    const rootNodeOfBalancedTree = this.buildTree(array, 0, array.length - 1);
+    this.root = rootNodeOfBalancedTree;
+    prettyPrint(this.root);
   }
 }
 
