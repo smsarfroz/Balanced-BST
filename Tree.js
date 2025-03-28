@@ -218,7 +218,7 @@ class Tree {
   isBalanced() {
     let ok = true;
     this.preOrder(this.root, (node) => {
-      if (this.height(node.left) - this.height(node.right) > 1) {
+      if (Math.abs(this.height(node.left) - this.height(node.right)) > 1) {
         ok = false; 
       }
     });
