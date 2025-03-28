@@ -153,13 +153,46 @@ class Tree {
     if (!callback) {
       throw new Error('Please provide a callback function first.');
     }
-    callback(this.root);
+    let queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let curNode = queue.shift();
+      callback(curNode);
+      if (curNode.left != null) {
+        queue.push(curNode.left);
+      }
+      if (curNode.right != null) {
+        queue.push(curNode.right);
+      }
+    }
   }
-  inOrder(callback) {
+  inOrder(node, callback) {
     if (!callback) {
       throw new Error('Please provide a callback function first.');
     }
-    callback(this.root);
+    if (node == null) return;
+
+    this.inOrder(node.left, callback);
+    callback(node);
+    this.inOrder(node.right, callback);
+  }
+  preOrder(node, callback) {
+    if (!callback) {
+      throw new Error('Please provide a callback function first.');
+    }
+    if (node == null) return;
+    callback(node);
+    this.preOrder(node.left, callback);
+    this.preOrder(node.right, callback);
+  }
+  postOrder(node, callback) {
+    if (!callback) {
+      throw new Error('Please provide a callback function first.');
+    }
+    if (node == null) return;
+    this.postOrder(node.left, callback);
+    this.postOrder(node.right, callback);
+    callback(node);
   }
 }
 
