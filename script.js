@@ -11,4 +11,6 @@ console.log(tree.find(23));
 
 // tree.preOrder(tree.root, (node) => console.log(node.data));
 
-tree.postOrder(tree.root, (node) => console.log(node.data));
+// tree.postOrder(tree.root, (node) => console.log(node.data));
+
+console.log(tree.height(tree.find(67)));

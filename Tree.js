@@ -194,6 +194,16 @@ class Tree {
     this.postOrder(node.right, callback);
     callback(node);
   }
+  height(node, Height = 0) {
+    if (node == null || (node.left == null && node.right == null)) {
+      return 0;
+    }
+    Height += Math.max((node.left != null) + this.height(node.left, Height), (node.right != null) + this.height(node.right, Height));
+    return Height;
+  }
+  depth(node) {
+    
+  }
 }
 
 export { Tree };
